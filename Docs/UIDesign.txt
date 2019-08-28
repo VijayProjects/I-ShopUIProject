@@ -1,0 +1,14 @@
+						I-Shop
+					    (User Interface)
+
+1.Home Page
+2.Register Page
+3.Login Page
+4.User Home
+5.Products Home
+6. Shopping Cart Page
+7.Product Details Page
+8.Cart Summary and Bill Payment
+9.Manage Account Page
+10.Signout Page
+

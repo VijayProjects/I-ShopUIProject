@@ -10,8 +10,36 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-Width, Content-Type, Accept, Authorization');
+  next();
+});
 //configure Database Connection
 var url = "mongodb://127.0.0.1:27017";
+
+//post request for user registration
+app.post("/registerUser", function (request, response) {
+  var regUser = {
+    userName: request.body.userName,
+    password: request.body.password,
+    email: request.body.email,
+    city: request.body.city,
+    state: request.body.state,
+    pinNum: parseInt(request.body.pinNum)
+  };
+  //connect to database
+  mongoClient.connect(url, function (err, db) {
+    if (!err) {
+      console.log(regUser);
+      db.db("ishop").collection("tblRegister").insertOne(regUser);
+      response.send("Record inserted..!");
+    } else {
+      console.log(err);
+    }
+  });
+});
 
 //Get all Categories 
 app.get("/getCategories", function (request, response) {
@@ -66,28 +94,6 @@ app.get("/getShoppingCart", function (request, response) {
     }
   });
 }); // get
-
-//post request for user registration
-app.post("/registerUser", function (request, response) {
-  var regUser = {
-    userId: parseInt(request.body.Id),
-    userName: request.body.Name,
-    password: request.body.Password,
-    email: request.body.Email,
-    city: request.body.City,
-    state: request.body.State,
-    pinNum: parseInt(request.body.Pin)
-  };
-  //connect to database
-  mongoClient.connect(url, function (err, db) {
-    if (!err) {
-      db.db("ishop").collection("tblRegister").insertOne(regUser);
-      response.send("Record inserted..!");
-    } else {
-      console.log(err);
-    }
-  });
-});
 
 //post request for login
 app.post("/login", function (request, response) {

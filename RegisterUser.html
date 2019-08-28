@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>I-Shop | Register User</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="modules/IShop.js"></script>
+  <script src="controllers/IShopController.js"></script>
+</head>
+<body ng-app="DemoApp" ng-controller="HomeController">
+  <br>
+  <h3>{{success}}</h3>
+  <div class="m-auto border bg-light p-4" style="width:350px">
+    <h3 class="text-danger text-center">User Registration</h3>
+    <form name="frmRegUser" ng-submit="regUserSubmit(user)" novalidate>
+      <div class="form-group">
+        <label>User Name</label>
+        <input type="text" name="userName" ng-model="user.userName" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" ng-model="user.password" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" ng-model="user.email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" name="city" ng-model="user.city" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <input type="text" name="state" ng-model="user.state" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Postal Code</label>
+        <input type="text" name="pinNum" ng-model="user.pinNum" class="form-control">
+      </div>
+      <button class="btn btn-block btn-outline-success">Register</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,8 +1,22 @@
 //controller
-app.controller("HomeController", function($scope, $http) {
+app.controller("HomeController", function ($scope, $http) {
   $scope.categories = [];
   $scope.products = [];
   $scope.shoppingCart = [];
+  /* post request for register user details */
+  $scope.regUserSubmit = function(user) {  
+    $http.post("http://127.0.0.1:8989/registerUser", user)
+      .then(
+        function onsuccess(response) {
+          alert("success")
+          console.log(response);
+        },
+        function onfailed(response) {
+          alert("failure")
+          console.log(response);
+        }
+      );
+  }
 
   /* get request to get categories */
   $http.get("http://127.0.0.1:8989/getCategories").then(
